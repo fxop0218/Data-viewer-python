@@ -7,7 +7,7 @@ CUSTOMER_TYPE = "Customer_type"
 GENDER = "Gender"
 
 srl.set_page_config(page_title="Sales dashborad",
-                    page_icon=":bar_chart:",
+                    page_icon="🛒",
                     layout="wide")
 
 
@@ -47,9 +47,7 @@ df_selection = df_mkt.query(
     f"City == @city & Customer_type == @custom_type & Gender == @gender"
 )
 
-srl.dataframe(df_selection)
-
-srl.title(":bar_chart: Sales Dashboard")
+srl.title(":bar_chart: 🛒 Sales Dashboard")
 srl.markdown("##")
 
 total_sales = int(df_selection["Total"].sum())
@@ -98,3 +96,13 @@ fig_hour_sales.update_layout(
 left_column, right_column = srl.columns(2)
 left_column.plotly_chart(fig_product_sales, use_container_width=True)
 right_column.plotly_chart(fig_hour_sales, use_container_width=True)
+srl.dataframe(df_selection)
+hide_srl = """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    </style>
+"""
+
+srl.markdown(hide_srl, unsafe_allow_html=True)
