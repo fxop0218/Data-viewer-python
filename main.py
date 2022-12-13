@@ -16,3 +16,11 @@ df_mkt = pd.read_excel(
 )
 
 srl.dataframe(df_mkt)
+
+# Filter in the sidebar
+
+srl.sidebar.header("Filter")
+city = srl.sidebar.multiselect("Select the city:",
+                               options=df_mkt["City"].unique(),
+                               default=df_mkt["City"].unique()
+                               )
